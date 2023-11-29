@@ -1,5 +1,4 @@
 import { Router } from 'express';
-
 import { StudentRoutes } from '../../modules/student/student.route';
 import { UserRoutes } from '../../modules/users/user.route';
 
