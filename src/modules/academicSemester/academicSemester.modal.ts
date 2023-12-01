@@ -1,8 +1,10 @@
 import { Schema, model } from 'mongoose';
+import { TAcademicSemester } from './academicSemester.interface';
 import {
-  TAcademicSemester,
-} from './academicSemester.interface';
-import { AcademicSemesterCode, AcademicSemesterName, Months } from './academicSemester.constant';
+  AcademicSemesterCode,
+  AcademicSemesterName,
+  Months,
+} from './academicSemester.constant';
 
 const acdemicSemesterSchema = new Schema<TAcademicSemester>(
   {
@@ -11,26 +13,22 @@ const acdemicSemesterSchema = new Schema<TAcademicSemester>(
       required: true,
       enum: AcademicSemesterName,
     },
-
     year: {
-      type: Date,
+      type: String,
       required: true,
     },
-
     code: {
       type: String,
       required: true,
       enum: AcademicSemesterCode,
     },
-
     startMonth: {
-      Types: String,
+      type: String,
       required: true,
       enum: Months,
     },
-
     endMonth: {
-      Types: String,
+      type: String,
       required: true,
       enum: Months,
     },
@@ -40,7 +38,19 @@ const acdemicSemesterSchema = new Schema<TAcademicSemester>(
   },
 );
 
-export const AcdemicSemsterSchema = model<TAcademicSemester>(
-  'Academicsemister',
+acdemicSemesterSchema.pre('save', async function (next) {
+  const isSemesterExists = await AcademicSemester.findOne({
+    name: this.name,
+    year: this.year,
+  });
+
+  if (isSemesterExists) {
+    throw new Error(' Semester is already exists !');
+  }
+  next();
+});
+
+export const AcademicSemester = model<TAcademicSemester>(
+  'AcademicSemester',
   acdemicSemesterSchema,
 );

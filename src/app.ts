@@ -3,15 +3,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import express, {
   Application,
-  NextFunction,
   Request,
   Response,
-  Router,
 } from 'express';
 import cors from 'cors';
 
-import globalErrorHandler from './app/middlewares/globalErrorHandler';
-import notFound from './app/middlewares/notFound';
+import globalErrorHandler from './app/config/middlewares/globalErrorHandler';
+import notFound from './app/config/middlewares/notFound';
 import router from './app/routes';
 
 const app: Application = express();
