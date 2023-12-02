@@ -9,7 +9,7 @@ const academicDepartmentSchema = new Schema<TAcademicDepartment>(
       unique: true,
     },
 
-    AcademicFaculty: {
+    academicFaculty: {
       type: Schema.Types.ObjectId,
       ref: 'AcademicFaculty',
     },
@@ -34,12 +34,12 @@ academicDepartmentSchema.pre('findOneAndUpdate', async function (next) {
   const query = this.getQuery();
   const isDepartmentExist = await academicDepartment.findOne(query);
   if (!isDepartmentExist) {
-    throw new Error(' Thus departmenet does not exist!');
+    throw new Error(' Thus Department does not exist!');
   }
   next();
 });
 
 export const academicDepartment = model<TAcademicDepartment>(
-  'academicDepartment',
+  'AcademicDepartment',
   academicDepartmentSchema,
 );
