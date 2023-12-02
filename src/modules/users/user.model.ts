@@ -38,7 +38,7 @@ const userSchema = new Schema<TUser>(
 );
 // pre save middleware/ hook : will work on create()  save()
 userSchema.pre('save', async function (next) {
-  // console.log(this, 'pre hook : we will save  data');
+
   // eslint-disable-next-line @typescript-eslint/no-this-alias
   const user = this; // doc
   // hashing password and save into DB
