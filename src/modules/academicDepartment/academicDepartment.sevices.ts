@@ -3,19 +3,18 @@ import { academicDepartment } from './academicDepartment.model';
 
 const createAcademicDepartmentIntoDB = async (payload: TAcademicDepartment) => {
   const result = await academicDepartment.create(payload);
-
   return result;
 };
 
 const getALlAcademicDepartmentIntoDB = async () => {
-  const result = await academicDepartment.find().populate('AcademicFaculty');
+  const result = await academicDepartment.find().populate('academicFaculty');
   return result;
 };
 
 const getSingleAcademicDepartmentIntoDB = async (id: string) => {
   const result = await academicDepartment
     .findById(id)
-    .populate('AcademicFaculty');
+    .populate('academicFaculty');
   return result;
 };
 
