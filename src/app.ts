@@ -1,11 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import express, {
-  Application,
-  Request,
-  Response,
-} from 'express';
+import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 
 import globalErrorHandler from './app/config/middlewares/globalErrorHandler';
@@ -23,7 +19,9 @@ app.use(cors());
 app.use('/api/v1', router);
 
 const test = (req: Request, res: Response) => {
-  res.send('DS University Management');
+  // res.send('DS University Management');
+
+  Promise.reject();
 };
 
 app.get('/', test);
