@@ -14,7 +14,7 @@ const crateCourse = catchAsync(async (req, res) => {
 });
 
 const getALlCourse = catchAsync(async (req, res) => {
-  const result = await CourseServices.getALlCourseFromDB();
+  const result = await CourseServices.getALlCourseFromDB(req.query);
   sendResponse(res, {
     statusCode: httpStatus.CREATED,
     success: true,
